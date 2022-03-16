@@ -22,39 +22,37 @@
                 android:layout_marginRight="14dp">
 
             <Button
-                    android:id="@+id/backtocategories"
+                    android:id="@+id/btnBackToCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Back"
+                    android:text="@string/back"
                     android:textColor="@color/orange"
                     android:textStyle="bold"
-                    android:textSize="19dp"
-                    android:background="@drawable/ic_launcher_foreground"
+                    android:textSize="19sp"
                     android:layout_gravity="center_vertical"/>
-
             <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="220dp"
-                    android:layout_height="80dp"
+                    android:layout_width="264dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_launcher_background"/>
+                    app:srcCompat="@drawable/a"/>
         </LinearLayout>
 
         <TextView
-                android:id="@+id/productstextview"
+                android:id="@+id/productTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:gravity="center"
-                android:text="Products"
+                android:text="@string/products"
                 android:textColor="@color/darkgrey"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:textStyle="bold"/>
 
 
         <ListView
-                android:id="@+id/productslst"
+                android:id="@+id/productListView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 

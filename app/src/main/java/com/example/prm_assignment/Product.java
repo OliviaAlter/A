@@ -18,13 +18,16 @@ public class Product extends AppCompatActivity {
     ListView productList;
     String[] product_name;
     String[] product_price;
+
     DatabaseHelper databaseHelper;
     String username;
+
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+
     String categoryName;
-    TextView protextview;
-    Button backtocat;
+    TextView productTextView;
+    Button backToCategoryList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +38,15 @@ public class Product extends AppCompatActivity {
         editor = sharedPreferences.edit();
 
         username = getIntent().getExtras().getString("username");
-        protextview = findViewById(R.id.productstextview);
-        backtocat = findViewById(R.id.backtocategories);
+        productTextView = findViewById(R.id.productTextView);
+        backToCategoryList = findViewById(R.id.btnBackToCategory);
+
         databaseHelper = new DatabaseHelper(this);
 
         if (getIntent().getExtras().getString("category_name") != null) {
             categoryName = getIntent().getExtras().getString("category_name");
-            int categoryId = databaseHelper.getcateory_ID(categoryName);
-            Cursor cursor = databaseHelper.show_categoryproducts(String.valueOf(categoryId));
+            int categoryId = databaseHelper.getcateoryId(categoryName);
+            Cursor cursor = databaseHelper.showCategoryproducts(String.valueOf(categoryId));
             product_name = new String[cursor.getCount()];
             product_price = new String[cursor.getCount()];
             int count = 0;
@@ -52,13 +56,13 @@ public class Product extends AppCompatActivity {
                 count++;
                 cursor.moveToNext();
             }
-            productList = findViewById(R.id.productslst);
+            productList = findViewById(R.id.productListView);
             ProductAdapter adapter = new ProductAdapter(this, product_name, product_price, databaseHelper, username, categoryName);
             productList.setAdapter(adapter);
         } else {
             Log.e("Error in Product", "Intent not found");
         }
-        backtocat.setOnClickListener(v -> {
+        backToCategoryList.setOnClickListener(v -> {
             Intent i = new Intent(Product.this, Category.class);
             i.putExtra("username", username);
             startActivity(i);

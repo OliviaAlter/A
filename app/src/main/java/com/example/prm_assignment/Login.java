@@ -40,7 +40,7 @@ public class Login extends AppCompatActivity {
                     editor.putString("Password", password.getText().toString());
                     editor.putBoolean("Is_checked", is_remembered_checked);
                     editor.apply();
-                    Toast.makeText(getApplicationContext(), "Your date have been saved", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Your data have been saved", Toast.LENGTH_LONG).show();
                 } else {
                     editor.clear();
                     editor.apply();

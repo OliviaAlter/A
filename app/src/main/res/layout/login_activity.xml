@@ -20,7 +20,7 @@
     <ImageView
             android:layout_width="312dp"
             android:layout_height="173dp"
-            app:srcCompat="@drawable/_5279963_p0"
+            app:srcCompat="@drawable/a"
             android:id="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="28dp" app:layout_constraintEnd_toEndOf="parent"

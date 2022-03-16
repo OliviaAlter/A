@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal" android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginRight="14dp"
+              android:layout_marginLeft="14dp"
+              android:padding="5dp">
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
+
+        <TextView
+                android:id="@+id/txtProductInCartName1"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="@string/product_name"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+
+        <TextView
+                android:id="@+id/txtProductInCartPrice1"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="@string/price"
+                android:textColor="@color/darkgrey"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+        <TextView
+                android:id="@+id/txtProductInCartQuantity1"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="@string/quantity"
+                android:textColor="@color/darkgrey"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+        <EditText
+                android:id="@+id/txtQuantityField1"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="@string/change_quantity"
+                android:textColor="@color/darkgrey"
+                android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <Button
+                android:id="@+id/btnUpdateQuantity1"
+                android:layout_width="124dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:text="@string/update"
+                android:textColor="@color/orange"
+                android:textStyle="bold"/>
+
+        <Button
+                android:id="@+id/btnRemoveProductInCart1"
+                android:layout_width="124dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="1dp"
+                android:text="@string/remove"
+                android:textColor="@color/orange"
+                android:textStyle="bold"/>
+    </LinearLayout>
+
+</LinearLayout>

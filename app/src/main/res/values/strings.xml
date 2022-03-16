@@ -16,4 +16,17 @@
     <string name="search">Search</string>
     <string name="available_categories">Available categories</string>
     <string name="welcome_to_our_shop">Welcome to our shop</string>
+    <string name="your_cart_content">Your cart content</string>
+    <string name="place_order">Place order</string>
+    <string name="product_name">Product name</string>
+    <string name="price">Price</string>
+    <string name="quantity">Quantity</string>
+    <string name="change_quantity">Change quantity</string>
+    <string name="remove">Remove</string>
+    <string name="update">Update</string>
+    <string name="enter_quantity">Enter quantity</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="available_products">Available products</string>
+    <string name="back">Back</string>
+    <string name="products">Products</string>
 </resources>

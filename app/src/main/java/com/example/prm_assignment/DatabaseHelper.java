@@ -8,11 +8,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String databaseName = "seeding_db";
+    private static final String databaseName = "not_db";
     SQLiteDatabase base_database;
 
     public DatabaseHelper(Context context) {
-        super(context, databaseName, null, 12);
+        super(context, databaseName, null, 1);
     }
 
     @Override
@@ -102,73 +102,78 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         row3.put("CategoryId", 2);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Lenovo 155");
-        row3.put("Price", 8000);
+        row3.put("ProductName", "Sugar");
+        row3.put("ProductPrice", 21);
         row3.put("CategoryId", 3);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "DELL 3580");
-        row3.put("ProductPrice", 7000);
+        row3.put("ProductName", "Sugar");
+        row3.put("ProductPrice", 21);
         row3.put("CategoryId", 3);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "HP probook 450 G7");
-        row3.put("ProductPrice", 15500);
+        row3.put("ProductName", "Sugar");
+        row3.put("ProductPrice", 21);
         row3.put("CategoryId", 3);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "DELL latitude 3400");
-        row3.put("ProductPrice", 16000);
+        row3.put("ProductName", "Sugar");
+        row3.put("ProductPrice", 21);
         row3.put("CategoryId", 3);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Lenovo IdeaPad L3");
-        row3.put("ProductPrice", 9400);
+        row3.put("ProductName", "Sugar");
+        row3.put("ProductPrice", 21);
         row3.put("CategoryId", 3);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Zanussi no frost refrigerator");
-        row3.put("ProductPrice", 5850);
+        row3.put("ProductName", "Sugar");
+        row3.put("ProductPrice", 21);
         row3.put("CategoryId", 4);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "White point dishwasher");
-        row3.put("ProductPrice", 4600);
+        row3.put("ProductName", "Sugar");
+        row3.put("ProductPrice", 21);
         row3.put("CategoryId", 4);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Toshiba washing machine");
-        row3.put("ProductPrice", 4400);
+        row3.put("ProductName", "Sugar");
+        row3.put("ProductPrice", 21);
         row3.put("CategoryId", 4);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Electrostar deep freezer");
-        row3.put("ProductPrice", 4000);
+        row3.put("ProductName", "Sugar");
+        row3.put("ProductPrice", 21);
         row3.put("CategoryId", 4);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Scarf");
-        row3.put("ProductPrice", 50);
+        row3.put("ProductName", "Sugar");
+        row3.put("ProductPrice", 21);
+        row3.put("CategoryId", 4);
+        database.insert("Products", null, row3);
+
+        row3.put("ProductName", "Sugar");
+        row3.put("ProductPrice", 21);
         row3.put("CategoryId", 5);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Leather Belt-black");
-        row3.put("ProductPrice", 100);
+        row3.put("ProductName", "Sugar");
+        row3.put("ProductPrice", 21);
         row3.put("CategoryId", 5);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Ice cap");
-        row3.put("ProductPrice", 80);
+        row3.put("ProductName", "Sugar");
+        row3.put("ProductPrice", 21);
         row3.put("CategoryId", 5);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Cat eye sunglasses");
-        row3.put("ProductPrice", 45);
+        row3.put("ProductName", "Sugar");
+        row3.put("ProductPrice", 21);
         row3.put("CategoryId", 5);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Gloves");
-        row3.put("ProductPrice", 70);
+        row3.put("ProductName", "Sugar");
+        row3.put("ProductPrice", 21);
         row3.put("CategoryId", 5);
         database.insert("Products", null, row3);
 
@@ -251,7 +256,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public int getcateory_ID(String categoryname) {
+    public int getcateoryId(String categoryname) {
         base_database = getReadableDatabase();
         String[] arg = {categoryname};
         Cursor cursor = base_database.rawQuery("SELECT CategoryId from Categories where CategoryName LIKE ?", arg);
@@ -260,7 +265,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor.getInt(0);
     }
 
-    public Cursor show_categoryproducts(String cateogry_id) {
+    public Cursor showCategoryproducts(String cateogry_id) {
         base_database = getReadableDatabase();
         String[] arg = {cateogry_id};
         Cursor cursor = base_database.rawQuery("SELECT ProductName,ProductPrice FROM Products WHERE CategoryId LIKE ?", arg);
@@ -287,24 +292,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor.getInt(0);
     }
 
-    public void addtoShoppingcart(String custid, String prodid, String quantity) {
+    public void addToCart(String customerId, String productId, String quantity) {
         base_database = getReadableDatabase();
-        String[] arg = {custid};
+        String[] arg = {customerId};
         Cursor cursor = base_database.rawQuery("SELECT OrderId FROM Orders WHERE CustomerId LIKE ?", arg);
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
-            insertIntoExistingCart(String.valueOf(cursor.getInt(0)), prodid, quantity);
+            insertIntoExistingCart(String.valueOf(cursor.getInt(0)), productId, quantity);
         } else {
-            insertIntoCart(custid, prodid, quantity);
+            insertIntoCart(customerId, productId, quantity);
         }
         base_database.close();
     }
 
-    public void insertIntoExistingCart(String ordid, String prodid, String quantity) {
+    public void insertIntoExistingCart(String OrderId, String ProductId, String quantity) {
         base_database = getReadableDatabase();
         ContentValues row = new ContentValues();
-        row.put("Ordid", ordid);
-        row.put("Proid", prodid);
+        row.put("OrderId", OrderId);
+        row.put("ProductId", ProductId);
         row.put("Quantity", quantity);
         base_database = getWritableDatabase();
         base_database.insert("OrderDetails", null, row);
@@ -340,13 +345,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor.getInt(0);
     }
 
-    public Cursor getCartProduct(String sc_id) {
+    public Cursor getCartProduct(String cartId) {
         base_database = getReadableDatabase();
-        String[] arg = {sc_id};
+        String[] arg = {cartId};
         Cursor cursor = base_database.rawQuery("SELECT ProductId, Quantity FROM OrderDetails WHERE OrderId LIKE ?", arg);
         cursor.moveToFirst();
         base_database.close();
         return cursor;
+    }
+
+    public void updateProductQuantityInCart(String cartId, String productId, String quantity) {
+        base_database = getReadableDatabase();
+        String[] arg = {cartId, productId};
+        Cursor cursor = base_database.rawQuery("select Quantity from OrderDetails where Ordid like ? and Proid like ?", arg);
+        cursor.moveToFirst();
+        base_database = getWritableDatabase();
+        ContentValues row = new ContentValues();
+        row.put("Quantity", quantity);
+        base_database.update("OrderDetails", row, "OrderId LIKE ? AND ProductId LIKE ?", new String[]{cartId, productId});
+        base_database.close();
     }
 
     public Cursor getProductDataInCart(String productId) {

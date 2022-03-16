@@ -3,14 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.4010416666666667" />
+        <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/drawable/ic_launcher_background.xml" value="0.55625" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/activity_main.xml" value="0.33016304347826086" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/cart_activity.xml" value="0.3808876811594203" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/category_activity.xml" value="0.33" />
+        <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/dataholder_cart.xml" value="0.1" />
+        <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/dataholder_product.xml" value="0.38385416666666666" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/login_activitiy2.xml" value="0.33016304347826086" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/login_activity.xml" value="0.33" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/login_activity1.xml" value="0.38177083333333334" />
-        <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/product_activity.xml" value="0.3808876811594203" />
-        <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/row.xml" value="0.33" />
+        <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/order_place_activity.xml" value="0.39791666666666664" />
+        <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/product_activity.xml" value="0.5" />
+        <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/row.xml" value="0.1" />
+        <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/rowsc.xml" value="0.2994791666666667" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/signup_activities.xml" value="0.33016304347826086" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/signup_activity.xml" value="0.2713541666666667" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/menu/menu.xml" value="0.33" />
