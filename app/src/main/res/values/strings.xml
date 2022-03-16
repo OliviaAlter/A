@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">PRM_Assignment</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="remember_login">Remember login</string>
+    <string name="sign_up_new_account">Sign up new account</string>
+    <string name="full_name">Full name</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="create_new_account">Create new account</string>
+    <string name="todo">TODO</string>
+    <string name="sign_up">Sign up</string>
+    <string name="already_have_account_sign_in">Already have account ? Sign in</string>
+    <string name="shoppincart">Shopping Cart</string>
+    <string name="logout">Log out</string>
+    <string name="search">Search</string>
+    <string name="available_categories">Available categories</string>
+    <string name="welcome_to_our_shop">Welcome to our shop</string>
+</resources>
