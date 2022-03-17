@@ -12,7 +12,7 @@
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/cart_product_processing.xml" value="0.38177083333333334" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/cart_product_row.xml" value="0.3015625" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/category_activity.xml" value="0.33" />
-        <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/dataholder_cart.xml" value="0.1" />
+        <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/dataholder_cart.xml" value="0.25" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/dataholder_product.xml" value="0.38385416666666666" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/fragment_map.xml" value="0.2558257345491388" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/history_product_row.xml" value="0.3015625" />
@@ -23,10 +23,12 @@
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/login_activity.xml" value="0.33" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/login_activity1.xml" value="0.38177083333333334" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/map_fragment.xml" value="0.2621580547112462" />
+        <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/order_history_activity.xml" value="0.2689969604863222" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/order_place_activity.xml" value="0.39791666666666664" />
-        <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/process_order_row.xml" value="0.1" />
+        <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/process_order_row.xml" value="0.33" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/processing_order_activity.xml" value="0.32135416666666666" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/product_activity.xml" value="0.33" />
+        <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/product_detail.xml" value="0.28020833333333334" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/product_detail_activity.xml" value="0.25" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/product_row.xml" value="0.3015625" />
         <entry key="..\:/IdeaProjects/PRM_Assignment/app/src/main/res/layout/row.xml" value="0.1" />
