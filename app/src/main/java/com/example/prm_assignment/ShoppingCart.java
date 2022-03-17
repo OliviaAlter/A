@@ -105,18 +105,18 @@ public class ShoppingCart extends AppCompatActivity {
                     try {
                         int q = Integer.parseInt(setquantity.getText().toString());
                         if (q < 1 || q > 100) {
-                            Toast.makeText(getApplicationContext(), "Enter valid number", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Enter valid number", Toast.LENGTH_SHORT).show();
                         } else {
                             databaseHelper.updateProductQuantityInCart(String.valueOf(sc_id), String.valueOf(proid), String.valueOf(q));
                             proquant.setText("Quantity: " + q);
-                            Toast.makeText(getApplicationContext(), "Quantity updated", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Quantity updated", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
                         setquantity.getText().clear();
-                        Toast.makeText(getApplicationContext(), "You should enter a number", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "You should enter a number", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Enter quantity of product you want to change to", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Enter quantity of product you want to change to", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -133,7 +133,7 @@ public class ShoppingCart extends AppCompatActivity {
             });
 
             proname.setText(aproduct_name[position]);
-            proprice.setText("Price: " + aproduct_price[position] + " EGP");
+            proprice.setText("Price: " + aproduct_price[position] + " $");
             proquant.setText("Quantity: " + aproduct_quantity[position]);
             return row;
         }

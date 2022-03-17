@@ -8,11 +8,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String databaseName = "not_db";
+    private static final String databaseName = "not12_db";
     SQLiteDatabase base_database;
 
     public DatabaseHelper(Context context) {
-        super(context, databaseName, null, 1);
+        super(context, databaseName, null, 2);
     }
 
     @Override
@@ -297,6 +297,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] arg = {customerId};
         Cursor cursor = base_database.rawQuery("SELECT OrderId FROM Orders WHERE CustomerId LIKE ?", arg);
         cursor.moveToFirst();
+
         if (cursor.getCount() > 0) {
             insertIntoExistingCart(String.valueOf(cursor.getInt(0)), productId, quantity);
         } else {
@@ -307,12 +308,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void insertIntoExistingCart(String OrderId, String ProductId, String quantity) {
         base_database = getReadableDatabase();
-        ContentValues row = new ContentValues();
-        row.put("OrderId", OrderId);
-        row.put("ProductId", ProductId);
-        row.put("Quantity", quantity);
+        String[] arg = {OrderId, ProductId};
+        Cursor cursor = base_database.rawQuery("SELECT Quantity FROM OrderDetails WHERE OrderId LIKE ? AND ProductId LIKE ?", arg);
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0) {
+            updateProductQuantityInCartIfExistProduct(OrderId, ProductId, quantity);
+            //updateProductQuantityInCart(OrderId, ProductId, String.valueOf(quantity));
+        } else {
+            ContentValues row = new ContentValues();
+            row.put("OrderId", OrderId);
+            row.put("ProductId", ProductId);
+            row.put("Quantity", quantity);
+            base_database = getWritableDatabase();
+            base_database.insert("OrderDetails", null, row);
+            base_database.close();
+        }
+    }
+
+    public void updateProductQuantityInCartIfExistProduct(String OrderId, String productId, String quantity) {
+        base_database = getReadableDatabase();
+        String[] arg = {OrderId, productId};
+        Cursor cursor = base_database.rawQuery("SELECT Quantity FROM OrderDetails WHERE OrderId LIKE ? AND ProductId LIKE ?", arg);
+        cursor.moveToFirst();
+        int totalQuantity = cursor.getInt(0) + Integer.parseInt(quantity);
         base_database = getWritableDatabase();
-        base_database.insert("OrderDetails", null, row);
+        ContentValues row = new ContentValues();
+        row.put("Quantity", totalQuantity);
+        base_database.update("OrderDetails", row, "OrderId LIKE ? AND ProductId LIKE ?", new String[]{OrderId, productId});
         base_database.close();
     }
 

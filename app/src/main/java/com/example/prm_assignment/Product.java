@@ -1,16 +1,13 @@
 package com.example.prm_assignment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.view.*;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -57,7 +54,7 @@ public class Product extends AppCompatActivity {
                 cursor.moveToNext();
             }
             productList = findViewById(R.id.productListView);
-            ProductAdapter adapter = new ProductAdapter(this, product_name, product_price, databaseHelper, username, categoryName);
+            ProductAdapter adapter = new ProductAdapter(this, product_name, product_price);
             productList.setAdapter(adapter);
         } else {
             Log.e("Error in Product", "Intent not found");
@@ -67,6 +64,65 @@ public class Product extends AppCompatActivity {
             i.putExtra("username", username);
             startActivity(i);
         });
+    }
+
+    class ProductAdapter extends ArrayAdapter<String> {
+        Context context;
+        String[] productNameAdapter;
+        String[] productPriceAdapter;
+
+        ProductAdapter(Product _context, String[] _productNameAdapter, String[] _productPriceAdapter) {
+            super(_context, R.layout.dataholder_product, _productNameAdapter);
+            this.context = _context;
+            this.productNameAdapter = _productNameAdapter;
+            this.productPriceAdapter = _productPriceAdapter;
+
+        }
+
+        @Override
+        public View getView(final int position, final View convertView, ViewGroup parent) {
+            LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            View row = layoutInflater.inflate(R.layout.row, parent, false);
+
+            final TextView productName = row.findViewById(R.id.productname);
+            TextView productPrice = row.findViewById(R.id.productprice);
+            final EditText productQuantity = row.findViewById(R.id.quantitytocart);
+            Button addToCart = row.findViewById(R.id.addtocart_btn);
+
+            addToCart.setOnClickListener(v -> {
+                if (!productQuantity.getText().toString().isEmpty()) {
+                    try {
+                        int q = Integer.parseInt(productQuantity.getText().toString());
+                        if (q < 1) {
+                            Toast.makeText(getApplicationContext(), "Enter valid number", Toast.LENGTH_SHORT).show();
+                        } else {
+                            int customerId = databaseHelper.getcustomerID(username);
+                            int productId = databaseHelper.getProductID(productName.getText().toString());
+                            databaseHelper.addToCart(String.valueOf(customerId), String.valueOf(productId), String.valueOf(q));
+                            Toast.makeText(getApplicationContext(), "Added to Shopping cart", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(Product.this, Product.class);
+                            if (categoryName != null) {
+                                i.putExtra("category_name", categoryName);
+                            }
+                            i.putExtra("username", username);
+                            startActivity(i);
+                        }
+                    } catch (Exception e) {
+                        productQuantity.getText().clear();
+                        Log.e(productQuantity.getText().toString(), "ERROR");
+                        Log.e("ERROR", e.getMessage());
+                        Toast.makeText(getApplicationContext(), "Enter numeric only", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Enter quantity of product you want to add", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            productName.setText(productNameAdapter[position]);
+            productPrice.setText("Price: " + productPriceAdapter[position] + " $");
+            return row;
+        }
     }
 
     @Override

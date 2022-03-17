@@ -1,13 +1,6 @@
 package com.example.prm_assignment;
 
-import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.*;
-
+/*
 public class ProductAdapter extends ArrayAdapter<String> {
     private final Product context;
     private final String[] productNameAdapter;
@@ -70,3 +63,5 @@ public class ProductAdapter extends ArrayAdapter<String> {
         return row;
     }
 }
+
+ */
