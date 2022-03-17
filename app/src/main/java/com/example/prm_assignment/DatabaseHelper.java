@@ -12,7 +12,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     SQLiteDatabase base_database;
 
     public DatabaseHelper(Context context) {
-        super(context, databaseName, null, 2);
+        super(context, databaseName, null, 5);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         database.execSQL("CREATE TABLE IF NOT EXISTS Products(ProductId integer primary key autoincrement,ProductName text not null,ProductPrice integer not null, CategoryId integer,foreign key(CategoryId) REFERENCES Categories(CategoryId))");
 
-        database.execSQL("CREATE TABLE IF NOT EXISTS Orders(OrderId integer primary key autoincrement,OrderDate date,Address text,CustomerId integer,foreign key(CustomerId) REFERENCES Customers(CustomerId))");
+        database.execSQL("CREATE TABLE IF NOT EXISTS Orders(OrderId integer primary key autoincrement,TotalPrice text, text,CustomerId integer,foreign key(CustomerId) REFERENCES Customers(CustomerId))");
 
         database.execSQL("CREATE TABLE IF NOT EXISTS OrderDetails(OrderId integer not null,ProductId integer not null,Quantity integer not null,primary key(OrderId, ProductId),foreign key(OrderId) REFERENCES Orders(OrderId),foreign key(ProductId) REFERENCES Products(ProductId))");
 
@@ -52,42 +52,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.insert("Categories", null, categoryValue);
 
         ContentValues row3 = new ContentValues();
-        row3.put("ProductName", "Black pants");
-        row3.put("ProductPrice", 150);
+        row3.put("ProductName", "Rice seeds");
+        row3.put("ProductPrice", 15);
         row3.put("CategoryId", 1);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Long grey coat");
-        row3.put("ProductPrice", 500);
+        row3.put("ProductName", "Mango");
+        row3.put("ProductPrice", 50);
         row3.put("CategoryId", 1);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Dark red skirt");
-        row3.put("ProductPrice", 115);
+        row3.put("ProductName", "Orchis");
+        row3.put("ProductPrice", 15);
         row3.put("CategoryId", 1);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Blue dress");
-        row3.put("ProductPrice", 300);
+        row3.put("ProductName", "Melon");
+        row3.put("ProductPrice", 30);
         row3.put("CategoryId", 1);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "High collar pullover");
-        row3.put("ProductPrice", 150);
+        row3.put("ProductName", "Water melon");
+        row3.put("ProductPrice", 10);
         row3.put("CategoryId", 1);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Italiano pasta");
+        row3.put("ProductName", "Wooden chair");
         row3.put("ProductPrice", 8);
         row3.put("CategoryId", 2);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Crystal sunflower oil- 1 Liter");
+        row3.put("ProductName", "Wooden bench");
         row3.put("ProductPrice", 25);
         row3.put("CategoryId", 2);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Rice - 1 kg");
+        row3.put("ProductName", "BBQ");
         row3.put("ProductPrice", 20);
         row3.put("CategoryId", 2);
         database.insert("Products", null, row3);
@@ -97,12 +97,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         row3.put("CategoryId", 2);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Sugar");
+        row3.put("ProductName", "Cutter");
         row3.put("ProductPrice", 21);
         row3.put("CategoryId", 2);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Sugar");
+        row3.put("ProductName", "Shovel");
+        row3.put("ProductPrice", 31);
+        row3.put("CategoryId", 3);
+        database.insert("Products", null, row3);
+
+        row3.put("ProductName", "");
+        row3.put("ProductPrice", 11);
+        row3.put("CategoryId", 3);
+        database.insert("Products", null, row3);
+
+        row3.put("ProductName", "Dirt");
+        row3.put("ProductPrice", 21);
+        row3.put("CategoryId", 3);
+        database.insert("Products", null, row3);
+
+        row3.put("ProductName", "Puller");
         row3.put("ProductPrice", 21);
         row3.put("CategoryId", 3);
         database.insert("Products", null, row3);
@@ -112,68 +127,53 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         row3.put("CategoryId", 3);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Sugar");
-        row3.put("ProductPrice", 21);
-        row3.put("CategoryId", 3);
-        database.insert("Products", null, row3);
-
-        row3.put("ProductName", "Sugar");
-        row3.put("ProductPrice", 21);
-        row3.put("CategoryId", 3);
-        database.insert("Products", null, row3);
-
-        row3.put("ProductName", "Sugar");
-        row3.put("ProductPrice", 21);
-        row3.put("CategoryId", 3);
-        database.insert("Products", null, row3);
-
-        row3.put("ProductName", "Sugar");
+        row3.put("ProductName", "Fertilizer");
         row3.put("ProductPrice", 21);
         row3.put("CategoryId", 4);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Sugar");
+        row3.put("ProductName", "Potting mix");
         row3.put("ProductPrice", 21);
         row3.put("CategoryId", 4);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Sugar");
+        row3.put("ProductName", "Organic fertilizer");
         row3.put("ProductPrice", 21);
         row3.put("CategoryId", 4);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Sugar");
-        row3.put("ProductPrice", 21);
+        row3.put("ProductName", "Plant healthcare");
+        row3.put("ProductPrice", 32);
+        row3.put("CategoryId", 4);
+        database.insert("Products", null, row3);
+
+        row3.put("ProductName", "Growth care stick");
+        row3.put("ProductPrice", 22);
         row3.put("CategoryId", 4);
         database.insert("Products", null, row3);
 
         row3.put("ProductName", "Sugar");
-        row3.put("ProductPrice", 21);
-        row3.put("CategoryId", 4);
-        database.insert("Products", null, row3);
-
-        row3.put("ProductName", "Sugar");
-        row3.put("ProductPrice", 21);
+        row3.put("ProductPrice", 71);
         row3.put("CategoryId", 5);
         database.insert("Products", null, row3);
 
         row3.put("ProductName", "Sugar");
-        row3.put("ProductPrice", 21);
+        row3.put("ProductPrice", 81);
         row3.put("CategoryId", 5);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Sugar");
-        row3.put("ProductPrice", 21);
+        row3.put("ProductName", "Lime tree");
+        row3.put("ProductPrice", 121);
         row3.put("CategoryId", 5);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Sugar");
-        row3.put("ProductPrice", 21);
+        row3.put("ProductName", "Organge tree");
+        row3.put("ProductPrice", 91);
         row3.put("CategoryId", 5);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Sugar");
-        row3.put("ProductPrice", 21);
+        row3.put("ProductName", "Lemon tree");
+        row3.put("ProductPrice", 34);
         row3.put("CategoryId", 5);
         database.insert("Products", null, row3);
 
@@ -188,7 +188,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.execSQL("DROP TABLE IF EXISTS OrderDetails");
     }
 
-    // function login
+    // login
     public boolean loginUser(String username, String password) {
         base_database = getWritableDatabase();
         String[] arg = {username, password};
@@ -216,7 +216,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    // function user validation
+    // user validation
     public boolean duplicateUserCheck(String username) {
         base_database = getReadableDatabase();
         String[] arg = {username};
@@ -229,7 +229,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    // function show all categories
+    // show all categories
     public Cursor showAllCategories() {
         base_database = getReadableDatabase();
         Cursor cursor = base_database.rawQuery("SELECT CategoryName FROM Categories", null);
@@ -238,7 +238,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    // function search for product
+    // search for product
     public Cursor searchProduct(String text) {
         base_database = getReadableDatabase();
         String[] arg = {text};
@@ -248,14 +248,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    // function delete item in cart
+    // delete item in cart
     public void deleteFromCart(String shoppingCartId, String productId) {
         base_database = getWritableDatabase();
         base_database.delete("OrderDetails", "OrderId='" + shoppingCartId + "' and ProductId='" + productId + "' ", null);
         base_database.close();
     }
 
-
+    // get category id
     public int getcateoryId(String categoryname) {
         base_database = getReadableDatabase();
         String[] arg = {categoryname};
@@ -265,6 +265,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor.getInt(0);
     }
 
+    // show all category
     public Cursor showCategoryproducts(String cateogry_id) {
         base_database = getReadableDatabase();
         String[] arg = {cateogry_id};
@@ -274,6 +275,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    // get user id
     public int getcustomerID(String email) {
         base_database = getReadableDatabase();
         String[] arg = {email};
@@ -283,6 +285,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor.getInt(0);
     }
 
+    // get product id
     public int getProductID(String name) {
         base_database = getReadableDatabase();
         String[] arg = {name};
@@ -292,6 +295,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor.getInt(0);
     }
 
+    // add to cart func
     public void addToCart(String customerId, String productId, String quantity) {
         base_database = getReadableDatabase();
         String[] arg = {customerId};
@@ -306,6 +310,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         base_database.close();
     }
 
+    // insert into cart is already exist
     public void insertIntoExistingCart(String OrderId, String ProductId, String quantity) {
         base_database = getReadableDatabase();
         String[] arg = {OrderId, ProductId};
@@ -325,6 +330,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    // update quantity
     public void updateProductQuantityInCartIfExistProduct(String OrderId, String productId, String quantity) {
         base_database = getReadableDatabase();
         String[] arg = {OrderId, productId};
@@ -338,13 +344,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         base_database.close();
     }
 
+    // add to cart
     public void insertIntoCart(String CustomerId, String ProductId, String quantity) {
         ContentValues row = new ContentValues();
         row.put("CustomerId", CustomerId);
         base_database = getWritableDatabase();
         base_database.insert("Orders", null, row);
         base_database.close();
-        /////insert into OrderDetails/////////
         base_database = getReadableDatabase();
         String[] arg = {CustomerId};
         Cursor cursor = base_database.rawQuery("SELECT OrderId FROM Orders WHERE CustomerId LIKE ?", arg);
@@ -353,7 +359,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         base_database.close();
     }
 
-    /////////////////////////Shopping cart/////////////////////////////////
+    // get user's cart id
     public int getCustomerCartId(String CustomerId) {
         base_database = getReadableDatabase();
         String[] arg = {CustomerId};
@@ -367,6 +373,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor.getInt(0);
     }
 
+    // get cart's product
     public Cursor getCartProduct(String cartId) {
         base_database = getReadableDatabase();
         String[] arg = {cartId};
@@ -376,6 +383,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    // update product quantity in card
     public void updateProductQuantityInCart(String cartId, String productId, String quantity) {
         base_database = getWritableDatabase();
         ContentValues row = new ContentValues();
@@ -384,6 +392,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         base_database.close();
     }
 
+    // get product's data in cart
     public Cursor getProductDataInCart(String productId) {
         base_database = getReadableDatabase();
         String[] arg = {productId};
@@ -392,8 +401,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         base_database.close();
         return cursor;
     }
-    //Ordid integer not null,Proid
 
+    // delete from cart
     public void deleteProduct(String cartId, String productId) {
         base_database = getReadableDatabase();
         String[] arg = {cartId, productId};
@@ -404,6 +413,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         base_database.close();
     }
 
+    // calculate total
     public float calculateTotal(String[] p, String[] q) {
         float sum = 0;
         for (int i = 0; i < p.length; i++) {
@@ -412,6 +422,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return sum;
     }
 
+    // place order
     public void placeOrder(String OrderId, String CustomerId) {
         base_database = getWritableDatabase();
         ContentValues row = new ContentValues();

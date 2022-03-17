@@ -83,7 +83,7 @@ public class Product extends AppCompatActivity {
         public View getView(final int position, final View convertView, ViewGroup parent) {
             LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            View row = layoutInflater.inflate(R.layout.row, parent, false);
+            View row = layoutInflater.inflate(R.layout.product_row, parent, false);
 
             final TextView productName = row.findViewById(R.id.productname);
             TextView productPrice = row.findViewById(R.id.productprice);

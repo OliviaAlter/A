@@ -13,16 +13,16 @@
             android:layout_gravity="center_vertical">
 
         <TextView
-                android:id="@+id/txtProductInCartName"
+                android:id="@+id/txtProductNameHistory"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:text="Product name"
-                android:textColor="@color/beige"
+                android:textColor="@color/black"
                 android:textSize="17dp"
                 android:textStyle="bold"/>
 
         <TextView
-                android:id="@+id/txtProductInCartPrice"
+                android:id="@+id/txtProductPriceHistory"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:text="Price"
@@ -31,7 +31,7 @@
                 android:textStyle="bold"/>
 
         <TextView
-                android:id="@+id/txtProductInCartQuantity"
+                android:id="@+id/txtProductQuantityHistory"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:text="Quantity"

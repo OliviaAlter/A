@@ -10,7 +10,6 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 public class ShoppingCart extends AppCompatActivity {
     String username;
     SharedPreferences sharedPreferences;
@@ -20,7 +19,7 @@ public class ShoppingCart extends AppCompatActivity {
     String[] productPrice;
     String[] productQuantity;
     ListView cartListView;
-    Button btnPlaceOrder, backFromCart;
+    Button btnPlaceOrder, backFromCart, btnMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +32,7 @@ public class ShoppingCart extends AppCompatActivity {
         username = getIntent().getExtras().getString("username");
         backFromCart = findViewById(R.id.btnBackToCategoryFromCart);
         btnPlaceOrder = findViewById(R.id.btnPlaceOrder);
+        btnMap = findViewById(R.id.btnMap);
 
         databaseHelper = new DatabaseHelper(this);
 
@@ -67,7 +67,14 @@ public class ShoppingCart extends AppCompatActivity {
         });
 
         btnPlaceOrder.setOnClickListener(v -> openDialog(productPrice, productQuantity));
+    }
 
+    private void openDialog(String[] price, String[] quantity) {
+        float result = databaseHelper.calculateTotal(price, quantity);
+        Intent i = new Intent(ShoppingCart.this, ProcessOrder.class);
+        i.putExtra("username", username);
+        OrderConfirm orderConfirm = new OrderConfirm(result, i);
+        orderConfirm.show(getSupportFragmentManager(), "confirm");
     }
 
     class ShoppingCartAdapter extends ArrayAdapter<String> {
@@ -77,7 +84,7 @@ public class ShoppingCart extends AppCompatActivity {
         String[] aproduct_quantity;
 
         ShoppingCartAdapter(Context c, String[] n, String[] p, String[] q) {
-            super(c, R.layout.rowsc, n);
+            super(c, R.layout.cart_product_row, n);
             this.context = c;
             this.aproduct_name = n;
             this.aproduct_price = p;
@@ -88,11 +95,11 @@ public class ShoppingCart extends AppCompatActivity {
         public View getView(final int position, final View convertView, ViewGroup parent) {
             LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            View row = layoutInflater.inflate(R.layout.rowsc, parent, false);
+            View row = layoutInflater.inflate(R.layout.cart_product_row, parent, false);
 
-            final TextView proname = row.findViewById(R.id.txtProductInCartName);
-            TextView proprice = row.findViewById(R.id.txtProductInCartPrice);
-            final TextView proquant = row.findViewById(R.id.txtProductInCartQuantity);
+            final TextView proname = row.findViewById(R.id.txtProductNameHistory);
+            TextView proprice = row.findViewById(R.id.txtProductPriceHistory);
+            final TextView proquant = row.findViewById(R.id.txtProductQuantityHistory);
             final EditText setquantity = row.findViewById(R.id.txtQuantityField);
             Button update_quant = row.findViewById(R.id.btnUpdateQuantity);
             Button delete_product = row.findViewById(R.id.btnRemoveProductInCart);
@@ -132,20 +139,15 @@ public class ShoppingCart extends AppCompatActivity {
 
             });
 
+            btnMap.setOnClickListener(v -> {
+                // TODO : map fragment
+            });
+
             proname.setText(aproduct_name[position]);
             proprice.setText("Price: " + aproduct_price[position] + " $");
             proquant.setText("Quantity: " + aproduct_quantity[position]);
             return row;
         }
-    }
-
-
-    private void openDialog(String[] price, String[] quantity) {
-        float result = databaseHelper.calculateTotal(price, quantity);
-        Intent i = new Intent(ShoppingCart.this, PlaceOrder.class);
-        i.putExtra("username", username);
-        OrderConfirm orderConfirm = new OrderConfirm(result, i);
-        orderConfirm.show(getSupportFragmentManager(), "confirm");
     }
 
     @Override
