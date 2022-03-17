@@ -29,6 +29,7 @@ public class Login extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("rememberLogin", MODE_PRIVATE);
         editor = sharedPreferences.edit();
+        GetShardPreferencesData();
 
         // Login
         btnLogin.setOnClickListener(v -> {

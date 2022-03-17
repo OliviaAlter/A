@@ -1,5 +1,5 @@
 package com.example.prm_assignment;
-
+/*
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -84,3 +84,6 @@ public class ShoppingCartAdapter extends ArrayAdapter<String> {
         return row;
     }
 }
+
+
+ */

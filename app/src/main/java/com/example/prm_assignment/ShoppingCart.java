@@ -1,14 +1,12 @@
 package com.example.prm_assignment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.ListView;
+import android.view.*;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -58,7 +56,7 @@ public class ShoppingCart extends AppCompatActivity {
                 i++;
             }
             cartListView = findViewById(R.id.cartListView);
-            ShoppingCartAdapter adapter = new ShoppingCartAdapter(this, productName, productPrice, productQuantity, databaseHelper, username);
+            ShoppingCartAdapter adapter = new ShoppingCartAdapter(this, productName, productPrice, productQuantity);
             cartListView.setAdapter(adapter);
         }
 
@@ -71,6 +69,76 @@ public class ShoppingCart extends AppCompatActivity {
         btnPlaceOrder.setOnClickListener(v -> openDialog(productPrice, productQuantity));
 
     }
+
+    class ShoppingCartAdapter extends ArrayAdapter<String> {
+        Context context;
+        String[] aproduct_name;
+        String[] aproduct_price;
+        String[] aproduct_quantity;
+
+        ShoppingCartAdapter(Context c, String[] n, String[] p, String[] q) {
+            super(c, R.layout.rowsc, n);
+            this.context = c;
+            this.aproduct_name = n;
+            this.aproduct_price = p;
+            this.aproduct_quantity = q;
+        }
+
+        @Override
+        public View getView(final int position, final View convertView, ViewGroup parent) {
+            LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            View row = layoutInflater.inflate(R.layout.rowsc, parent, false);
+
+            final TextView proname = row.findViewById(R.id.txtProductInCartName);
+            TextView proprice = row.findViewById(R.id.txtProductInCartPrice);
+            final TextView proquant = row.findViewById(R.id.txtProductInCartQuantity);
+            final EditText setquantity = row.findViewById(R.id.txtQuantityField);
+            Button update_quant = row.findViewById(R.id.btnUpdateQuantity);
+            Button delete_product = row.findViewById(R.id.btnRemoveProductInCart);
+
+            update_quant.setOnClickListener(v -> {
+                int custid = databaseHelper.getcustomerID(username);
+                int sc_id = databaseHelper.getCustomerCartId(String.valueOf(custid));
+                int proid = databaseHelper.getProductID(aproduct_name[position]);
+                if (!setquantity.getText().toString().equals("")) {
+                    try {
+                        int q = Integer.parseInt(setquantity.getText().toString());
+                        if (q < 1 || q > 100) {
+                            Toast.makeText(getApplicationContext(), "Enter valid number", Toast.LENGTH_LONG).show();
+                        } else {
+                            databaseHelper.updateProductQuantityInCart(String.valueOf(sc_id), String.valueOf(proid), String.valueOf(q));
+                            proquant.setText("Quantity: " + q);
+                            Toast.makeText(getApplicationContext(), "Quantity updated", Toast.LENGTH_LONG).show();
+                        }
+                    } catch (Exception e) {
+                        setquantity.getText().clear();
+                        Toast.makeText(getApplicationContext(), "You should enter a number", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Enter quantity of product you want to change to", Toast.LENGTH_LONG).show();
+                }
+            });
+
+            delete_product.setOnClickListener(v -> {
+                int custid = databaseHelper.getcustomerID(username);
+                int sc_id = databaseHelper.getCustomerCartId(String.valueOf(custid));
+                int proid = databaseHelper.getProductID(aproduct_name[position]);
+
+                Intent i = new Intent(ShoppingCart.this, ShoppingCart.class);
+                i.putExtra("username", username);
+                DeleteProduct d = new DeleteProduct(sc_id, proid, databaseHelper, i);
+                d.show(getSupportFragmentManager(), "delete");
+
+            });
+
+            proname.setText(aproduct_name[position]);
+            proprice.setText("Price: " + aproduct_price[position] + " EGP");
+            proquant.setText("Quantity: " + aproduct_quantity[position]);
+            return row;
+        }
+    }
+
 
     private void openDialog(String[] price, String[] quantity) {
         float result = databaseHelper.calculateTotal(price, quantity);
