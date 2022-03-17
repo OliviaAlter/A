@@ -30,12 +30,13 @@ public class ShoppingCart extends AppCompatActivity {
         editor = sharedPreferences.edit();
 
         username = getIntent().getExtras().getString("username");
+
         backFromCart = findViewById(R.id.btnBackToCategoryFromCart);
         btnPlaceOrder = findViewById(R.id.btnPlaceOrder);
 
         databaseHelper = new DatabaseHelper(this);
 
-        int customerId = databaseHelper.getcustomerID(username);
+        int customerId = databaseHelper.getCustomerId(username);
         int cartId = databaseHelper.getCustomerCartId(String.valueOf(customerId));
 
         if (cartId > 0) {
@@ -65,29 +66,26 @@ public class ShoppingCart extends AppCompatActivity {
             startActivity(i);
         });
 
-        btnPlaceOrder.setOnClickListener(v -> openDialog(productPrice, productQuantity));
+        btnPlaceOrder.setOnClickListener(v -> {
+            Intent i = new Intent(ShoppingCart.this, ProcessOrder.class);
+            i.putExtra("username", username);
+            startActivity(i);
+        });
     }
 
-    private void openDialog(String[] price, String[] quantity) {
-        float result = databaseHelper.calculateTotal(price, quantity);
-        Intent i = new Intent(ShoppingCart.this, ProcessOrder.class);
-        i.putExtra("username", username);
-        OrderConfirm orderConfirm = new OrderConfirm(result, i);
-        orderConfirm.show(getSupportFragmentManager(), "confirm");
-    }
 
     class ShoppingCartAdapter extends ArrayAdapter<String> {
         Context context;
-        String[] aproduct_name;
-        String[] aproduct_price;
-        String[] aproduct_quantity;
+        String[] adapterProductName;
+        String[] adapterProductPrice;
+        String[] adapterProductQuantity;
 
         ShoppingCartAdapter(Context c, String[] n, String[] p, String[] q) {
             super(c, R.layout.cart_product_row, n);
             this.context = c;
-            this.aproduct_name = n;
-            this.aproduct_price = p;
-            this.aproduct_quantity = q;
+            this.adapterProductName = n;
+            this.adapterProductPrice = p;
+            this.adapterProductQuantity = q;
         }
 
         @Override
@@ -96,29 +94,29 @@ public class ShoppingCart extends AppCompatActivity {
 
             View row = layoutInflater.inflate(R.layout.cart_product_row, parent, false);
 
-            final TextView proname = row.findViewById(R.id.txtProductNameHistory);
-            TextView proprice = row.findViewById(R.id.txtProductPriceHistory);
-            final TextView proquant = row.findViewById(R.id.txtProductQuantityHistory);
-            final EditText setquantity = row.findViewById(R.id.txtQuantityField);
-            Button update_quant = row.findViewById(R.id.btnUpdateQuantity);
-            Button delete_product = row.findViewById(R.id.btnRemoveProductInCart);
+            final TextView productName = row.findViewById(R.id.txtCartProductName);
+            TextView productPrice = row.findViewById(R.id.txtCartProductPrice);
+            final TextView productQuantity = row.findViewById(R.id.txtCartProductQuantity);
+            final EditText setQuantity = row.findViewById(R.id.txtCartQuantityField);
+            Button updateQuantity = row.findViewById(R.id.btnUpdateQuantityCart);
+            Button deleteProduct = row.findViewById(R.id.btnRemoveProductInCart);
 
-            update_quant.setOnClickListener(v -> {
-                int custid = databaseHelper.getcustomerID(username);
-                int sc_id = databaseHelper.getCustomerCartId(String.valueOf(custid));
-                int proid = databaseHelper.getProductID(aproduct_name[position]);
-                if (!setquantity.getText().toString().equals("")) {
+            updateQuantity.setOnClickListener(v -> {
+                int getCustomerId = databaseHelper.getCustomerId(username);
+                int cartId = databaseHelper.getCustomerCartId(String.valueOf(getCustomerId));
+                int productId = databaseHelper.getProductID(adapterProductName[position]);
+                if (!setQuantity.getText().toString().equals("")) {
                     try {
-                        int q = Integer.parseInt(setquantity.getText().toString());
+                        int q = Integer.parseInt(setQuantity.getText().toString());
                         if (q < 1 || q > 100) {
                             Toast.makeText(getApplicationContext(), "Enter valid number", Toast.LENGTH_SHORT).show();
                         } else {
-                            databaseHelper.updateProductQuantityInCart(String.valueOf(sc_id), String.valueOf(proid), String.valueOf(q));
-                            proquant.setText("Quantity: " + q);
+                            databaseHelper.updateProductQuantityInCart(String.valueOf(cartId), String.valueOf(productId), String.valueOf(q));
+                            productQuantity.setText("Quantity: " + q);
                             Toast.makeText(getApplicationContext(), "Quantity updated", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        setquantity.getText().clear();
+                        setQuantity.getText().clear();
                         Toast.makeText(getApplicationContext(), "You should enter a number", Toast.LENGTH_SHORT).show();
                     }
                 } else {
@@ -126,10 +124,10 @@ public class ShoppingCart extends AppCompatActivity {
                 }
             });
 
-            delete_product.setOnClickListener(v -> {
-                int customerId = databaseHelper.getcustomerID(username);
+            deleteProduct.setOnClickListener(v -> {
+                int customerId = databaseHelper.getCustomerId(username);
                 int cartId = databaseHelper.getCustomerCartId(String.valueOf(customerId));
-                int productId = databaseHelper.getProductID(aproduct_name[position]);
+                int productId = databaseHelper.getProductID(adapterProductName[position]);
 
                 Intent i = new Intent(ShoppingCart.this, ShoppingCart.class);
                 i.putExtra("username", username);
@@ -138,9 +136,9 @@ public class ShoppingCart extends AppCompatActivity {
 
             });
 
-            proname.setText(aproduct_name[position]);
-            proprice.setText("Price: " + aproduct_price[position] + " $");
-            proquant.setText("Quantity: " + aproduct_quantity[position]);
+            productName.setText(adapterProductName[position]);
+            productPrice.setText("Price: " + adapterProductPrice[position] + " $");
+            productQuantity.setText("Quantity: " + adapterProductQuantity[position]);
             return row;
         }
     }

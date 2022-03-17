@@ -239,7 +239,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // get category id
-    public int getCateoryId(String categoryname) {
+    public int getCategoryId(String categoryname) {
         base_database = getReadableDatabase();
         String[] arg = {categoryname};
         Cursor cursor = base_database.rawQuery("SELECT CategoryId from Categories where CategoryName LIKE ?", arg);
@@ -249,7 +249,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // show all category
-    public Cursor showCategoryproducts(String cateogry_id) {
+    public Cursor showCategoryProducts(String cateogry_id) {
         base_database = getReadableDatabase();
         String[] arg = {cateogry_id};
         Cursor cursor = base_database.rawQuery("SELECT ProductName,ProductPrice FROM Products WHERE CategoryId LIKE ?", arg);
@@ -259,7 +259,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // get user id
-    public int getcustomerID(String email) {
+    public int getCustomerId(String email) {
         base_database = getReadableDatabase();
         String[] arg = {email};
         Cursor cursor = base_database.rawQuery("SELECT CustomerId FROM Customers WHERE Username LIKE ?", arg);

@@ -42,8 +42,8 @@ public class Product extends AppCompatActivity {
 
         if (getIntent().getExtras().getString("category_name") != null) {
             categoryName = getIntent().getExtras().getString("category_name");
-            int categoryId = databaseHelper.getCateoryId(categoryName);
-            Cursor cursor = databaseHelper.showCategoryproducts(String.valueOf(categoryId));
+            int categoryId = databaseHelper.getCategoryId(categoryName);
+            Cursor cursor = databaseHelper.showCategoryProducts(String.valueOf(categoryId));
             product_name = new String[cursor.getCount()];
             product_price = new String[cursor.getCount()];
             int count = 0;
@@ -85,10 +85,10 @@ public class Product extends AppCompatActivity {
 
             View row = layoutInflater.inflate(R.layout.product_row, parent, false);
 
-            final TextView productName = row.findViewById(R.id.productname);
-            TextView productPrice = row.findViewById(R.id.productprice);
-            final EditText productQuantity = row.findViewById(R.id.quantitytocart);
-            Button addToCart = row.findViewById(R.id.addtocart_btn);
+            final TextView productName = row.findViewById(R.id.txtProductNames);
+            TextView productPrice = row.findViewById(R.id.txtProductPrices);
+            final EditText productQuantity = row.findViewById(R.id.txtQuantityProductToAddToCart);
+            Button addToCart = row.findViewById(R.id.btnAddProductToCart);
 
             addToCart.setOnClickListener(v -> {
                 if (!productQuantity.getText().toString().isEmpty()) {
@@ -97,7 +97,7 @@ public class Product extends AppCompatActivity {
                         if (q < 1) {
                             Toast.makeText(getApplicationContext(), "Enter valid number", Toast.LENGTH_SHORT).show();
                         } else {
-                            int customerId = databaseHelper.getcustomerID(username);
+                            int customerId = databaseHelper.getCustomerId(username);
                             int productId = databaseHelper.getProductID(productName.getText().toString());
                             databaseHelper.addToCart(String.valueOf(customerId), String.valueOf(productId), String.valueOf(q));
                             Toast.makeText(getApplicationContext(), "Added to Shopping cart", Toast.LENGTH_SHORT).show();

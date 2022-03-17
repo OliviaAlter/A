@@ -18,37 +18,36 @@
             android:textSize="19sp"
             android:layout_gravity="center_vertical"
             app:layout_constraintEnd_toStartOf="@+id/imageView5" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="48dp"
-            app:layout_constraintHorizontal_bias="0.478"/>
-
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="28dp"
+            app:layout_constraintHorizontal_bias="0.474"/>
     <ImageView
             android:id="@+id/imageView5"
-            android:layout_width="229dp"
-            android:layout_height="125dp"
+            android:layout_width="191dp"
+            android:layout_height="97dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/a"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp" android:layout_marginEnd="16dp"/>
     <TextView
             android:id="@+id/productTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="176dp"
+            android:layout_height="31dp"
             android:gravity="center"
             android:text="@string/products"
             android:textColor="@color/darkgrey"
             android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5" android:layout_marginTop="12dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintTop_toBottomOf="@+id/btnBackToCategory"
+            app:layout_constraintEnd_toStartOf="@+id/imageView5" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.551" android:layout_marginTop="4dp"/>
     <ListView
             android:id="@+id/productListView"
-            android:layout_width="351dp"
-            android:layout_height="432dp"
+            android:layout_width="353dp"
+            android:layout_height="570dp"
             android:layout_weight="1"
-            app:layout_constraintTop_toBottomOf="@+id/productTextView"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintVertical_bias="0.311"/>
+            app:layout_constraintTop_toBottomOf="@+id/imageView5"
+            android:layout_marginTop="8dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

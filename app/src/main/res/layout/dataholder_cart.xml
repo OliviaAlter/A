@@ -62,7 +62,7 @@
                 android:layout_weight="1"
                 android:layout_marginBottom="5dp"
                 android:text="@string/update"
-                android:textColor="@color/orange"
+                android:textColor="@color/black"
                 android:textStyle="bold"/>
 
         <Button
@@ -72,7 +72,7 @@
                 android:layout_weight="1"
                 android:padding="1dp"
                 android:text="@string/remove"
-                android:textColor="@color/orange"
+                android:textColor="@color/black"
                 android:textStyle="bold"/>
     </LinearLayout>
 

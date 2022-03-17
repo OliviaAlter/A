@@ -13,7 +13,7 @@
             android:layout_gravity="center_vertical">
 
         <TextView
-                android:id="@+id/txtProductNameHistory"
+                android:id="@+id/txtProductNameProcessing"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:text="@string/product_name"
@@ -22,7 +22,7 @@
                 android:textStyle="bold"/>
 
         <TextView
-                android:id="@+id/txtProductPriceHistory"
+                android:id="@+id/txtProductPriceProcessing"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:text="@string/price"
@@ -31,7 +31,7 @@
                 android:textStyle="bold"/>
 
         <TextView
-                android:id="@+id/txtProductQuantityHistory"
+                android:id="@+id/txtProductQuantityProcessing"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:text="@string/quantity"

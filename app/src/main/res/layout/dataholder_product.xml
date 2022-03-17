@@ -5,7 +5,7 @@
               android:layout_marginRight="14dp"
               android:layout_marginLeft="14dp"
               android:padding="5dp"
-              android:id="@+id/rowpro">
+              android:id="@+id/row_product">
 
 
     <LinearLayout
