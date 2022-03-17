@@ -42,7 +42,7 @@ public class Product extends AppCompatActivity {
 
         if (getIntent().getExtras().getString("category_name") != null) {
             categoryName = getIntent().getExtras().getString("category_name");
-            int categoryId = databaseHelper.getcateoryId(categoryName);
+            int categoryId = databaseHelper.getCateoryId(categoryName);
             Cursor cursor = databaseHelper.showCategoryproducts(String.valueOf(categoryId));
             product_name = new String[cursor.getCount()];
             product_price = new String[cursor.getCount()];

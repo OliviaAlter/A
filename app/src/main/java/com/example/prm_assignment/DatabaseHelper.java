@@ -238,25 +238,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    // search for product
-    public Cursor searchProduct(String text) {
-        base_database = getReadableDatabase();
-        String[] arg = {text};
-        Cursor cursor = base_database.rawQuery("SELECT ProductName ,ProductPrice ,Quantity FROM Products WHERE ProName LIKE '%'||?||'%'", arg);
-        cursor.moveToFirst();
-        base_database.close();
-        return cursor;
-    }
-
-    // delete item in cart
-    public void deleteFromCart(String shoppingCartId, String productId) {
-        base_database = getWritableDatabase();
-        base_database.delete("OrderDetails", "OrderId='" + shoppingCartId + "' and ProductId='" + productId + "' ", null);
-        base_database.close();
-    }
-
     // get category id
-    public int getcateoryId(String categoryname) {
+    public int getCateoryId(String categoryname) {
         base_database = getReadableDatabase();
         String[] arg = {categoryname};
         Cursor cursor = base_database.rawQuery("SELECT CategoryId from Categories where CategoryName LIKE ?", arg);
