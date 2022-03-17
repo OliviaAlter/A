@@ -1,89 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".ProcessOrder"
-            android:orientation="vertical">
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Category">
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        <LinearLayout
+    <ImageView
+            android:layout_width="196dp"
+            android:layout_height="98dp" app:srcCompat="@drawable/a"
+            android:id="@+id/imageView3"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="4dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="28dp"/>
+    <TextView
+            android:text="@string/products_in_your_order"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="283dp"
+            android:layout_height="34dp" android:id="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            android:layout_marginTop="28dp"/>
+    <ListView
+            android:id="@+id/list_category"
+            android:layout_width="379dp"
+            android:layout_height="204dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            android:layout_weight="1"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.333"/>
+    <TextView
+            android:text="@string/review_your_order"
+            android:layout_width="167dp"
+            android:textSize="19sp"
+            android:layout_height="55dp" android:id="@+id/textView3"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="48dp" app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    <EditText
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:inputType="textPersonName"
+            android:hint="@string/address"
+            android:ems="10"
+            android:id="@+id/txtAddressProcessing"
+            app:layout_constraintTop_toBottomOf="@+id/list_category"
+            android:layout_marginTop="40dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    <EditText
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:inputType="phone"
+            android:hint="@string/phone"
+            android:ems="10"
+            android:id="@+id/txtPhoneNumber"
+            app:layout_constraintTop_toBottomOf="@+id/txtAddressProcessing"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="36dp"/>
+    <TextView
+            android:text="@string/payment_method"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/txtPhoneNumber" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="56dp" android:layout_marginStart="16dp"/>
+    <RadioGroup
+            android:layout_width="190dp"
+            android:layout_height="80dp"
+            app:layout_constraintTop_toBottomOf="@+id/txtPhoneNumber"
+            android:layout_marginTop="32dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView4">
+        <RadioButton
+                android:text="@string/credit_card"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginLeft="14dp"
-                android:layout_marginRight="14dp">
-
-            <Button
-                    android:id="@+id/btnBackToCategoryFromCart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/back"
-                    android:textColor="@color/orange"
-                    android:textStyle="bold"
-                    android:textSize="19sp"
-                    android:layout_gravity="center_vertical"/>
-
-            <Button
-                    android:id="@+id/btnMap"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/location"
-                    android:textColor="@color/orange"
-                    android:textStyle="bold"
-                    android:textSize="19sp"
-                    android:layout_gravity="center_vertical"/>
-            <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="99dp"
-                    android:layout_height="64dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/a"/>
-        </LinearLayout>
-
-        <LinearLayout
+                android:textSize="16sp"
+                android:layout_height="40dp"
+                android:id="@+id/radioButton"
+        />
+        <RadioButton
+                android:text="@string/cash_on_delivery"
+                android:textSize="16sp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="14dp"
-                android:layout_marginLeft="14dp"
-                android:padding="5dp">
-
-            <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/shoppincart"
-                    android:textColor="@color/darkgrey"
-                    android:textSize="17sp"
-                    android:textStyle="bold"/>
-
-            <Button
-                    android:id="@+id/btnPlaceOrder"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/place_order"
-                    android:textColor="@color/orange"
-                    android:textStyle="bold"
-                    android:textSize="19sp"
-                    android:layout_marginStart="3dp"/>
-        </LinearLayout>
-        <ListView
-                android:id="@+id/cartListView"
-                android:layout_width="wrap_content"
-                android:layout_height="549dp"
-                android:layout_marginLeft="14dp"
-                android:layout_marginTop="14dp"
-                android:layout_marginRight="14dp"
-                android:verticalScrollbarPosition="right"/>
-    </LinearLayout>
-</ScrollView>
+                android:layout_height="40dp"
+                android:id="@+id/radioButton2"
+        />
+    </RadioGroup>
+</androidx.constraintlayout.widget.ConstraintLayout>

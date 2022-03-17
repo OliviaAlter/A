@@ -25,12 +25,13 @@
             android:layout_marginTop="28dp"/>
     <ListView
             android:id="@+id/list_category"
-            android:layout_width="match_parent"
-            android:layout_height="265dp"
+            android:layout_width="408dp"
+            android:layout_height="515dp"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
-            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.333"/>
     <TextView
             android:text="@string/welcome_to_our_shop"
             android:layout_width="167dp"

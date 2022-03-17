@@ -3,7 +3,7 @@
 
     <item
             android:id="@+id/ShoppingCart"
-            android:title="@string/shoppincart"/>
+            android:title="@string/shopping_cart"/>
     <item
             android:id="@+id/logout"
             android:title="@string/logout"/>

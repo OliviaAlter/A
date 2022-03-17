@@ -19,7 +19,7 @@ public class ShoppingCart extends AppCompatActivity {
     String[] productPrice;
     String[] productQuantity;
     ListView cartListView;
-    Button btnPlaceOrder, backFromCart, btnMap;
+    Button btnPlaceOrder, backFromCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,6 @@ public class ShoppingCart extends AppCompatActivity {
         username = getIntent().getExtras().getString("username");
         backFromCart = findViewById(R.id.btnBackToCategoryFromCart);
         btnPlaceOrder = findViewById(R.id.btnPlaceOrder);
-        btnMap = findViewById(R.id.btnMap);
 
         databaseHelper = new DatabaseHelper(this);
 
@@ -128,19 +127,15 @@ public class ShoppingCart extends AppCompatActivity {
             });
 
             delete_product.setOnClickListener(v -> {
-                int custid = databaseHelper.getcustomerID(username);
-                int sc_id = databaseHelper.getCustomerCartId(String.valueOf(custid));
-                int proid = databaseHelper.getProductID(aproduct_name[position]);
+                int customerId = databaseHelper.getcustomerID(username);
+                int cartId = databaseHelper.getCustomerCartId(String.valueOf(customerId));
+                int productId = databaseHelper.getProductID(aproduct_name[position]);
 
                 Intent i = new Intent(ShoppingCart.this, ShoppingCart.class);
                 i.putExtra("username", username);
-                DeleteProduct d = new DeleteProduct(sc_id, proid, databaseHelper, i);
+                DeleteProduct d = new DeleteProduct(cartId, productId, databaseHelper, i);
                 d.show(getSupportFragmentManager(), "delete");
 
-            });
-
-            btnMap.setOnClickListener(v -> {
-                // TODO : map fragment
             });
 
             proname.setText(aproduct_name[position]);

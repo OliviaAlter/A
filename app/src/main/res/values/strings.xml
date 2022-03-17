@@ -11,7 +11,7 @@
     <string name="todo">TODO</string>
     <string name="sign_up">Sign up</string>
     <string name="already_have_account_sign_in">Already have account ? Sign in</string>
-    <string name="shoppincart">Shopping Cart</string>
+    <string name="shopping_cart">Shopping Cart</string>
     <string name="logout">Log out</string>
     <string name="search">Search</string>
     <string name="available_categories">Available categories</string>
@@ -31,6 +31,12 @@
     <string name="products">Products</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="location">Location</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="products_in_your_order">Products in your order</string>
+    <string name="review_your_order">Review your order</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone</string>
+    <string name="payment_method">Payment method</string>
+    <string name="credit_card">Credit Card</string>
+    <string name="cash_on_delivery">Cash on delivery</string>
 </resources>

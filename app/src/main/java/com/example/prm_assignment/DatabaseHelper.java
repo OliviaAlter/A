@@ -12,7 +12,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     SQLiteDatabase base_database;
 
     public DatabaseHelper(Context context) {
-        super(context, databaseName, null, 5);
+        super(context, databaseName, null, 7);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         database.execSQL("CREATE TABLE IF NOT EXISTS Products(ProductId integer primary key autoincrement,ProductName text not null,ProductPrice integer not null, CategoryId integer,foreign key(CategoryId) REFERENCES Categories(CategoryId))");
 
-        database.execSQL("CREATE TABLE IF NOT EXISTS Orders(OrderId integer primary key autoincrement,TotalPrice text, text,CustomerId integer,foreign key(CustomerId) REFERENCES Customers(CustomerId))");
+        database.execSQL("CREATE TABLE IF NOT EXISTS Orders(OrderId integer primary key autoincrement, Address text, OrderDate date, isOrdered boolean, Phone integer, CustomerId integer,foreign key(CustomerId) REFERENCES Customers(CustomerId))");
 
         database.execSQL("CREATE TABLE IF NOT EXISTS OrderDetails(OrderId integer not null,ProductId integer not null,Quantity integer not null,primary key(OrderId, ProductId),foreign key(OrderId) REFERENCES Orders(OrderId),foreign key(ProductId) REFERENCES Products(ProductId))");
 
@@ -152,12 +152,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         row3.put("CategoryId", 4);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Sugar");
+        row3.put("ProductName", "Potato");
         row3.put("ProductPrice", 71);
         row3.put("CategoryId", 5);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "Sugar");
+        row3.put("ProductName", "Lemon seeds");
         row3.put("ProductPrice", 81);
         row3.put("CategoryId", 5);
         database.insert("Products", null, row3);
