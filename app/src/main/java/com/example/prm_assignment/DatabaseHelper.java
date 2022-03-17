@@ -355,10 +355,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void updateProductQuantityInCart(String cartId, String productId, String quantity) {
-        base_database = getReadableDatabase();
-        String[] arg = {cartId, productId};
-        Cursor cursor = base_database.rawQuery("select Quantity from OrderDetails where Ordid like ? and Proid like ?", arg);
-        cursor.moveToFirst();
         base_database = getWritableDatabase();
         ContentValues row = new ContentValues();
         row.put("Quantity", quantity);

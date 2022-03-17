@@ -1,45 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ShoppingCart">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ShoppingCart"
+            android:orientation="vertical">
 
-    <TextView
-            android:text="@string/your_cart_content"
-            android:layout_width="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/darkgrey"
-            android:textSize="19sp"
-            android:layout_height="wrap_content" android:id="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="36dp" android:layout_marginEnd="44dp"/>
-    <ListView
-            android:id="@+id/cartListView"
-            android:layout_width="364dp"
-            android:layout_height="510dp"
-            android:verticalScrollbarPosition="right"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
-            android:layout_marginTop="32dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-    <Button
-            android:text="@string/back"
-            android:layout_width="wrap_content"
+    <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnBackToCategoryFromCart"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="24dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="60dp" app:layout_constraintEnd_toStartOf="@+id/textView4"
-            app:layout_constraintHorizontal_bias="0.178"/>
+            android:orientation="vertical">
 
-    <Button
-            android:text="@string/place_order"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnPlaceOrder"
-            app:layout_constraintTop_toBottomOf="@+id/cartListView" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="20dp"
-            app:layout_constraintHorizontal_bias="0.498"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp">
+
+            <Button
+                    android:id="@+id/btnBackToCategoryFromCart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/back"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold"
+                    android:textSize="19sp"
+                    android:layout_gravity="center_vertical"/>
+
+            <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="220dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/a"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="14dp"
+                android:layout_marginLeft="14dp"
+                android:padding="5dp">
+
+            <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/shoppincart"
+                    android:textColor="@color/darkgrey"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+
+            <Button
+                    android:id="@+id/btnPlaceOrder"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/place_order"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold"
+                    android:textSize="19sp"
+                    android:layout_marginStart="3dp"/>
+        </LinearLayout>
+
+        <ListView
+                android:id="@+id/cartListView"
+                android:layout_width="wrap_content"
+                android:layout_height="962dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginRight="14dp"
+                android:verticalScrollbarPosition="right"/>
+    </LinearLayout>
+</ScrollView>

@@ -31,13 +31,16 @@ public class ShoppingCart extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("rememberLogin", MODE_PRIVATE);
         editor = sharedPreferences.edit();
+
         username = getIntent().getExtras().getString("username");
         backFromCart = findViewById(R.id.btnBackToCategoryFromCart);
         btnPlaceOrder = findViewById(R.id.btnPlaceOrder);
+
         databaseHelper = new DatabaseHelper(this);
 
         int customerId = databaseHelper.getcustomerID(username);
         int cartId = databaseHelper.getCustomerCartId(String.valueOf(customerId));
+
         if (cartId > 0) {
             Cursor cursorIdQuantity = databaseHelper.getCartProduct(String.valueOf(cartId));
             productName = new String[cursorIdQuantity.getCount()];
@@ -45,6 +48,7 @@ public class ShoppingCart extends AppCompatActivity {
             productQuantity = new String[cursorIdQuantity.getCount()];
 
             int i = 0;
+
             while (!cursorIdQuantity.isAfterLast()) {
                 Cursor cursor_name_price = databaseHelper.getProductDataInCart(cursorIdQuantity.getString(0));
                 productName[i] = cursor_name_price.getString(0);

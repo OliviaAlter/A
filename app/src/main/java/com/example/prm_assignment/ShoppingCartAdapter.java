@@ -17,7 +17,7 @@ public class ShoppingCartAdapter extends ArrayAdapter<String> {
     DatabaseHelper databaseHelper;
 
     public ShoppingCartAdapter(ShoppingCart _context, String[] _productNameAdapter, String[] _productPriceAdapter, String[] _productQuantityAdapter, DatabaseHelper _databaseHelper, String username) {
-        super(_context, R.layout.dataholder_cart);
+        super(_context, R.layout.dataholder_cart, _productNameAdapter);
         this.context = _context;
         this.productNameAdapter = _productNameAdapter;
         this.productPriceAdapter = _productPriceAdapter;
@@ -43,12 +43,13 @@ public class ShoppingCartAdapter extends ArrayAdapter<String> {
         updateQuantityButton.setOnClickListener(v -> {
             int customerId = databaseHelper.getcustomerID(username);
             int cartId = databaseHelper.getCustomerCartId(String.valueOf(customerId));
-            int productID = databaseHelper.getProductID(ShoppingCartAdapter.this.productNameAdapter[position]);
+            int productID = databaseHelper.getProductID(productNameAdapter[position]);
             Cursor cursor = databaseHelper.getProductDataInCart(String.valueOf(productID));
-            if (!setQuantityOfProduct.getText().toString().equals("")) {
+
+            if (!setQuantityOfProduct.getText().toString().isEmpty()) {
                 try {
                     int q = Integer.parseInt(setQuantityOfProduct.getText().toString());
-                    if (q < 1 || q > (Integer.parseInt(cursor.getString(2)))) {
+                    if (q < 1 || q > (Integer.parseInt(cursor.getString(1)))) {
                         Toast.makeText(context.getApplicationContext(), "Enter valid number", Toast.LENGTH_LONG).show();
                     } else {
                         databaseHelper.updateProductQuantityInCart(String.valueOf(cartId), String.valueOf(productID), String.valueOf(q));
@@ -64,24 +65,22 @@ public class ShoppingCartAdapter extends ArrayAdapter<String> {
             }
         });
 
-        deleteProductButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int customerId = databaseHelper.getcustomerID(username);
-                int cartId = databaseHelper.getCustomerCartId(String.valueOf(customerId));
-                int productId = databaseHelper.getProductID(productPriceAdapter[position]);
+        deleteProductButton.setOnClickListener(v -> {
+            int customerId = databaseHelper.getcustomerID(username);
+            int cartId = databaseHelper.getCustomerCartId(String.valueOf(customerId));
+            int productId = databaseHelper.getProductID(productPriceAdapter[position]);
 
-                Intent i = new Intent(context, ShoppingCart.class);
-                i.putExtra("username", username);
-                DeleteProduct deletion = new DeleteProduct(cartId, productId, databaseHelper, i);
-                deletion.show(context.getSupportFragmentManager(), "delete");
+            Intent i = new Intent(context, ShoppingCart.class);
+            i.putExtra("username", username);
+            DeleteProduct deletion = new DeleteProduct(cartId, productId, databaseHelper, i);
+            deletion.show(context.getSupportFragmentManager(), "delete");
 
-            }
         });
 
         productName.setText(productNameAdapter[position]);
         productPrice.setText("Price: " + productPriceAdapter[position] + " $");
         productQuantity.setText("Quantity: " + productQuantityAdapter[position]);
+
         return row;
     }
 }
