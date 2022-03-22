@@ -70,6 +70,11 @@ public class ProcessOrder extends AppCompatActivity {
             orderListView.setAdapter(adapter);
         }
         btnPlaceOrder.setOnClickListener(v -> openDialog(productPrice, productQuantity));
+        backFromCart.setOnClickListener(v -> {
+            Intent i = new Intent(ProcessOrder.this, ShoppingCart.class);
+            i.putExtra("username", username);
+            startActivity(i);
+        });
     }
 
     private void openDialog(String[] price, String[] quantity) {
