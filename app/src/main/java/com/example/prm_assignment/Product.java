@@ -17,7 +17,7 @@ public class Product extends AppCompatActivity {
     String[] product_price;
 
     DatabaseHelper databaseHelper;
-    String username;
+    String username, searchText;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -35,6 +35,7 @@ public class Product extends AppCompatActivity {
         editor = sharedPreferences.edit();
 
         username = getIntent().getExtras().getString("username");
+
         productTextView = findViewById(R.id.productTextView);
         backToCategoryList = findViewById(R.id.btnBackToCategory);
 
@@ -56,6 +57,25 @@ public class Product extends AppCompatActivity {
             productList = findViewById(R.id.productListView);
             ProductAdapter adapter = new ProductAdapter(this, product_name, product_price);
             productList.setAdapter(adapter);
+        } else if (getIntent().getExtras().getString("search_text") != null) {
+            searchText = getIntent().getExtras().getString("search_text");
+            Cursor cursor = databaseHelper.searchForProducts(searchText);
+            if (cursor.getCount() < 1) {
+                productTextView.setText("No Item Found");
+            } else {
+                product_name = new String[cursor.getCount()];
+                product_price = new String[cursor.getCount()];
+                int count = 0;
+                while (!cursor.isAfterLast()) {
+                    product_name[count] = cursor.getString(0);
+                    product_price[count] = String.valueOf(cursor.getInt(1));
+                    count++;
+                    cursor.moveToNext();
+                }
+                productList = findViewById(R.id.productListView);
+                ProductAdapter adapter = new ProductAdapter(this, product_name, product_price);
+                productList.setAdapter(adapter);
+            }
         } else {
             Log.e("Error in Product", "Intent not found");
         }
@@ -104,6 +124,11 @@ public class Product extends AppCompatActivity {
                             Intent i = new Intent(Product.this, Product.class);
                             if (categoryName != null) {
                                 i.putExtra("category_name", categoryName);
+                                searchText = null;
+                            }
+                            if (searchText != null) {
+                                i.putExtra("search_text", searchText);
+                                categoryName = null;
                             }
                             i.putExtra("username", username);
                             startActivity(i);

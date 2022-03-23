@@ -108,7 +108,7 @@ public class ShoppingCart extends AppCompatActivity {
                 if (!setQuantity.getText().toString().equals("")) {
                     try {
                         int q = Integer.parseInt(setQuantity.getText().toString());
-                        if (q < 1 || q > 100) {
+                        if (q < 1) {
                             Toast.makeText(getApplicationContext(), "Enter valid number", Toast.LENGTH_SHORT).show();
                         } else {
                             databaseHelper.updateProductQuantityInCart(String.valueOf(cartId), String.valueOf(productId), String.valueOf(q));

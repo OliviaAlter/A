@@ -7,9 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +17,8 @@ public class Category extends AppCompatActivity {
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
     ArrayAdapter<String> adapter;
     String username;
+    EditText txtSearchText;
+    Button searchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,8 @@ public class Category extends AppCompatActivity {
         editor = sharedPreferences.edit();
 
         ListView categoryListView = findViewById(R.id.list_category);
+        searchButton = findViewById(R.id.btnSearch);
+        txtSearchText = findViewById(R.id.txtSearchText);
 
         // set adapter
         adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
@@ -41,6 +43,13 @@ public class Category extends AppCompatActivity {
         categoryListView.setOnItemClickListener((parent, view, position, id) -> {
             Intent i = new Intent(Category.this, Product.class);
             i.putExtra("category_name", ((TextView) view).getText().toString());
+            i.putExtra("username", username);
+            startActivity(i);
+        });
+
+        searchButton.setOnClickListener((v) -> {
+            Intent i = new Intent(Category.this, Product.class);
+            i.putExtra("search_text", txtSearchText.getText().toString());
             i.putExtra("username", username);
             startActivity(i);
         });

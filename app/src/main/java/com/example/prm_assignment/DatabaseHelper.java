@@ -107,7 +107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         row3.put("CategoryId", 3);
         database.insert("Products", null, row3);
 
-        row3.put("ProductName", "");
+        row3.put("ProductName", "Potter helper");
         row3.put("ProductPrice", 11);
         row3.put("CategoryId", 3);
         database.insert("Products", null, row3);
@@ -366,6 +366,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    // search for product
+    public Cursor searchForProducts(String text) {
+        base_database = getReadableDatabase();
+        String[] arg = {text};
+        Cursor cursor = base_database.rawQuery("SELECT ProductName,ProductPrice FROM Products WHERE ProductName LIKE '%'||?||'%'", arg);
+        cursor.moveToFirst();
+        base_database.close();
+        return cursor;
+    }
+
     // update product quantity in card
     public void updateProductQuantityInCart(String cartId, String productId, String quantity) {
         base_database = getWritableDatabase();
@@ -410,6 +420,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         base_database = getWritableDatabase();
         ContentValues row = new ContentValues();
         base_database.update("Orders", row, "OrderId LIKE ? AND CustomerId LIKE ?", new String[]{OrderId, CustomerId});
+        base_database.close();
+    }
+
+    // update password
+    public void updatePassword(String username, String newPassword) {
+        base_database = getWritableDatabase();
+        ContentValues row = new ContentValues();
+        row.put("Password", newPassword);
+        base_database.update("Customers", row, "Username LIKE ?", new String[]{username});
         base_database.close();
     }
 }

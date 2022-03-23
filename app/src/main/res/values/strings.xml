@@ -40,4 +40,7 @@
     <string name="credit_card">Credit Card</string>
     <string name="cash_on_delivery">Cash on delivery</string>
     <string name="order">Order</string>
+    <string name="forget_password">Forget password</string>
+    <string name="reset_password">Reset password</string>
+    <string name="back_to_login">Back to login</string>
 </resources>

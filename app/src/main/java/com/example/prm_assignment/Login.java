@@ -10,7 +10,7 @@ public class Login extends AppCompatActivity {
 
     EditText username, password;
     CheckBox rememberMe;
-    TextView signUp;
+    TextView signUp, forgetPassword;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Button btnLogin;
@@ -24,6 +24,7 @@ public class Login extends AppCompatActivity {
         username = findViewById(R.id.txtUsername);
         password = findViewById(R.id.txtPassword);
         signUp = findViewById(R.id.txtSignup);
+        forgetPassword = findViewById(R.id.txtForgetPassword);
         rememberMe = findViewById(R.id.ckRemember);
         btnLogin = findViewById(R.id.btnLogin);
 
@@ -59,6 +60,12 @@ public class Login extends AppCompatActivity {
         // Sign up
         signUp.setOnClickListener(v -> {
             Intent i = new Intent(Login.this, Signup.class);
+            startActivity(i);
+        });
+
+        // forget password
+        forgetPassword.setOnClickListener(v -> {
+            Intent i = new Intent(Login.this, ForgetPassword.class);
             startActivity(i);
         });
 

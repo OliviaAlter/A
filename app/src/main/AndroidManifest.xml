@@ -44,6 +44,7 @@
         <activity android:name=".Category"/>
         <activity android:name=".Product"/>
         <activity android:name=".ShoppingCart"/>
+        <activity android:name=".ForgetPassword"/>
         <activity
                 android:name=".Login"
                 android:exported="true">

@@ -35,12 +35,12 @@ public class Signup extends AppCompatActivity {
         btnSignUp.setOnClickListener(v -> {
             boolean duplicated = databaseHelper.duplicateUserCheck(username.getText().toString());
             if (duplicated) {
-                Toast.makeText(getApplicationContext(), "Username already exists", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Username already exists", Toast.LENGTH_SHORT).show();
             } else {
-                if (password.getText().toString().equals(confirmPassword.getText().toString())) {
+                if (password.getText().toString().equals(confirmPassword.getText().toString()) && !(password.getText().toString().isEmpty()) && !(confirmPassword.getText().toString().isEmpty())) {
                     boolean success = databaseHelper.signUpUser(fullName.getText().toString(), username.getText().toString(), password.getText().toString());
                     if (success) {
-                        Toast.makeText(getApplicationContext(), "Sign up Successfully, returning to login", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Sign up Successfully, returning to login", Toast.LENGTH_SHORT).show();
                         final Handler handler = new Handler();
                         handler.postDelayed(() -> {
                             // Do something after 5s = 5000ms
