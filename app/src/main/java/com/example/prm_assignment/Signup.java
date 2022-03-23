@@ -48,10 +48,10 @@ public class Signup extends AppCompatActivity {
                             startActivity(i);
                         }, 5000);
                     } else {
-                        Toast.makeText(getApplicationContext(), "You have to fill all the fields", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "You have to fill all the fields", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Password and Confirm password doesn't match", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Password and Confirm password doesn't match", Toast.LENGTH_SHORT).show();
                 }
             }
         });

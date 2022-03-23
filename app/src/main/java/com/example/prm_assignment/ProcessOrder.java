@@ -27,6 +27,7 @@ public class ProcessOrder extends AppCompatActivity {
     RadioGroup radioGroup;
     RadioButton rbCreditCard, rbCod;
     String date;
+    EditText address, phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,9 @@ public class ProcessOrder extends AppCompatActivity {
         rbCod = findViewById(R.id.rbCod);
         backFromCart = findViewById(R.id.btnBackToCategoryFromProcessingOrder);
         btnPlaceOrder = findViewById(R.id.btnPlaceOrderFromProcessingOrder);
+        address = findViewById(R.id.txtAddressProcessing);
+        phone = findViewById(R.id.txtPhoneNumber);
+
         date = getDate();
 
         databaseHelper = new DatabaseHelper(this);
@@ -69,7 +73,13 @@ public class ProcessOrder extends AppCompatActivity {
             ProcessOrderAdapter adapter = new ProcessOrderAdapter(this, productName, productPrice, productQuantity);
             orderListView.setAdapter(adapter);
         }
-        btnPlaceOrder.setOnClickListener(v -> openDialog(productPrice, productQuantity));
+        btnPlaceOrder.setOnClickListener(v -> {
+            if (!(address.getText().toString().isEmpty()) && !(phone.getText().toString().isEmpty())) {
+                openDialog(productPrice, productQuantity);
+            } else {
+                Toast.makeText(getApplicationContext(), "You have to fill all the fields", Toast.LENGTH_SHORT).show();
+            }
+        });
         backFromCart.setOnClickListener(v -> {
             Intent i = new Intent(ProcessOrder.this, ShoppingCart.class);
             i.putExtra("username", username);
@@ -83,7 +93,6 @@ public class ProcessOrder extends AppCompatActivity {
         i.putExtra("username", username);
         OrderConfirm orderConfirm = new OrderConfirm(result, i);
         orderConfirm.show(getSupportFragmentManager(), "confirm");
-        Toast.makeText(getApplicationContext(), "Order successfully placed", Toast.LENGTH_SHORT).show();
     }
 
     @Override
