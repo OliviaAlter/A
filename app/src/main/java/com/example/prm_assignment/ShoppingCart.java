@@ -164,6 +164,11 @@ public class ShoppingCart extends AppCompatActivity {
                 i2.putExtra("username", username);
                 startActivity(i2);
                 return true;
+            case R.id.store_location:
+                //Intent i3 = new Intent(Category.this, MapFragment.class);
+                //i3.putExtra("username", username);
+                //startActivity(i3);
+                return true;
         }
         return false;
     }
